@@ -2,7 +2,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FaSearch } from 'react-icons/fa'; // Import search icon
-
+import { useLocation } from 'react-router-dom';
 const SearchBarWrapper = styled.div`
   display: flex;
   justify-content: flex-start;
@@ -61,10 +61,11 @@ interface SearchBarProps {
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({ onShowAllCategories }) => {
+  const location = useLocation();
   return (
     <SearchBarWrapper>
       <LogoImage src="/assets/logo.png" alt="Logo" />
-
+      {location.pathname === '/' &&
       <SearchContainer>
         <CategoryButton onClick={onShowAllCategories}>All Categories</CategoryButton>
 
@@ -74,6 +75,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onShowAllCategories }) => {
           <FaSearch />
         </SearchButton>
       </SearchContainer>
+}
     </SearchBarWrapper>
   );
 };
